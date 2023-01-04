@@ -1,0 +1,94 @@
+ASxxxx Linker V03.00 + NoICE + sdld,  page 1.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00000000  .__.ABS.                           cpct_video
+     00000000  l__CABS                         
+     00000000  l__DABS                         
+     00000000  l__DATA                         
+     00000000  l__GSFINAL                      
+     00000000  l__GSINIT                       
+     00000000  l__HOME                         
+     00000000  l__INITIALIZED                  
+     00000000  l__INITIALIZER                  
+     00000000  s__CABS                         
+     00000000  s__DABS                         
+     000002CA  l__CODE                         
+     00004000  s__CODE                         
+     000042CA  s__DATA                         
+     000042CA  s__GSFINAL                      
+     000042CA  s__GSINIT                       
+     000042CA  s__HOME                         
+     000042CA  s__INITIALIZED                  
+     000042CA  s__INITIALIZER                  
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 2.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_CODE                               00004000    000002CA =         714. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00004000  _sp_vshot                          vshot
+     00004006  _sp_enemy_saucer                   enemy_saurcer
+     000040C6  _sp_player_ship                    player_ship
+     0000411A  _g_palette                         g_palette
+     0000412A  _drawSprite                        main
+     0000415B  _main                              main
+     000041C5  _cpct_setPalette                   cpct_video
+     000041DC  _cpct_setPALColour                 cpct_video
+     000041E8  _cpct_drawSprite                   cpct_sprites
+     0000428D  _cpct_waitVSYNC                    cpct_video
+     0000428D  cpct_waitVSYNC_asm                 cpct_video
+     00004295  _cpct_setVideoMode                 cpct_video
+     000042A3  _cpct_disableFirmware              cpct_firmware
+     000042A3  _cpct_removeInterruptHandler       cpct_firmware
+     000042A3  cpct_disableFirmware_asm           cpct_firmware
+     000042A3  cpct_removeInterruptHandler_asm    cpct_firmware
+     000042B3  _cpct_mode_rom_status              cpct_firmware
+     000042B4  _cpct_getScreenPtr                 cpct_video
+ASxxxx Linker V03.00 + NoICE + sdld,  page 3.
+
+Files Linked                              [ module(s) ]
+
+obj/sprites/vshot.rel                     [ vshot ]
+obj/sprites/enemy-saurcer.rel             [ enemy_saurcer ]
+obj/sprites/player-ship.rel               [ player_ship ]
+obj/sprites/g_palette.rel                 [ g_palette ]
+obj/main.rel                              [ main ]
+
+
+Libraries Linked                          [ object file ]
+
+/home/cpc/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_setPalette_cbindings.rel ]
+/home/cpc/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_setPALColour_cbindings.rel ]
+/home/cpc/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_drawSprite_cbindings.rel ]
+/home/cpc/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_waitVSYNC.rel ]
+/home/cpc/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_setVideoMode_cbindings.rel ]
+/home/cpc/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_removeInterruptHandler.rel ]
+/home/cpc/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpc_mode_rom_status.rel ]
+/home/cpc/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_getScreenPtr_cbindings.rel ]
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 4.
+
+User Base Address Definitions
+
+_CODE = 0x4000
+_DATA = 0x0000
+
+

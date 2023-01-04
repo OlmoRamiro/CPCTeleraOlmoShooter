@@ -1,0 +1,29 @@
+XL2
+H 9 areas 2 global symbols
+M player_ship
+O -mz80
+S .__.ABS. Def0000
+A _CODE size 54 flags 0 addr 0
+S _sp_player_ship Def0000
+A _DATA size 0 flags 0 addr 0
+A _INITIALIZED size 0 flags 0 addr 0
+A _DABS size 0 flags 8 addr 0
+A _HOME size 0 flags 0 addr 0
+A _GSINIT size 0 flags 0 addr 0
+A _GSFINAL size 0 flags 0 addr 0
+A _INITIALIZER size 0 flags 0 addr 0
+A _CABS size 0 flags 8 addr 0
+T 00 00
+R 00 00 00 00
+T 00 00 00 00 40 80 00 00 00 00 90 60 00 00 00 00
+R 00 00 00 00
+T 0E 00 D5 EA 00 00 00 00 D5 EA 00 00 40 00 C0 C0
+R 00 00 00 00
+T 1C 00 00 80 90 80 D5 68 40 60 D5 80 94 68 40 EA
+R 00 00 00 00
+T 2A 00 85 EA EA D5 D5 4A 40 5F FF FF AF 80 00 85
+R 00 00 00 00
+T 38 00 FF FF 4A 00 00 40 4A 85 80 00 00 00 C0 C0
+R 00 00 00 00
+T 46 00 00 00 00 40 5F AF 80 00 00 C0 C0 C0 C0 00
+R 00 00 00 00
