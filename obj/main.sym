@@ -10,16 +10,31 @@ Symbol Table
     _cpct_disableFirmware                                          **** GX
     _cpct_drawSprite                                               **** GX
     _cpct_getScreenPtr                                             **** GX
+    _cpct_isKeyPressed                                             **** GX
+    _cpct_scanKeyboard                                             **** GX
     _cpct_setPALColour                                             **** GX
     _cpct_setPalette                                               **** GX
     _cpct_setVideoMode                                             **** GX
     _cpct_waitVSYNC                                                **** GX
   0 _drawSprite                                                    0000 GR
+  0 _draw_sp_enemy_saucer                                          005B GR
+  0 _draw_sp_player                                                0031 GR
+  0 _draw_sp_vshot                                                 0085 GR
     _g_palette                                                     **** GX
-  0 _main                                                          0031 GR
+  0 _initSprites                                                   00AF GR
+  0 _main                                                          00EB GR
     _sp_enemy_saucer                                               **** GX
+  1 _sp_enemy_saucer_speed                                         0008 GR
+  1 _sp_enemy_saucer_x                                             0006 GR
+  1 _sp_enemy_saucer_y                                             0007 GR
     _sp_player_ship                                                **** GX
+  1 _sp_player_ship_speed                                          0002 GR
+  1 _sp_player_ship_x                                              0000 GR
+  1 _sp_player_ship_y                                              0001 GR
     _sp_vshot                                                      **** GX
+  1 _sp_vshot_x                                                    0003 GR
+  1 _sp_vshot_y                                                    0004 GR
+  1 _sp_vshot_y_speed                                              0005 GR
 
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
@@ -27,8 +42,8 @@ Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE                                      size   9B   flags    0
-   1 _DATA                                      size    0   flags    0
+   0 _CODE                                      size  16A   flags    0
+   1 _DATA                                      size    9   flags    0
    2 _INITIALIZED                               size    0   flags    0
    3 _DABS                                      size    0   flags    8
    4 _HOME                                      size    0   flags    0

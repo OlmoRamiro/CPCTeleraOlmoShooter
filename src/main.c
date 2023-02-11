@@ -21,20 +21,68 @@
 #include <sprites/enemy-saurcer.h>
 #include <sprites/vshot.h>
 #include <sprites/player-ship.h>
+#include <stdio.h>
+
 
 enum { 
    SCREEN_TOP = 0,
    SCREEN_BOTTOM = 200,
    SCREEN_RIGHT = 80,
    SCREEN_LEFT = 0,
-   SCREEN_FRAME = 1
+   SCREEN_FRAME = 1,
+   TRUE = 1,
+   FALSE = 0
 };
 
-void drawSprite(u8 *sprite,int sprite_vertical_pos,int sprite_horizontal_pos,int sprite_width,int sprite_height)
+u8 sp_player_ship_x;
+u8 sp_player_ship_y;
+u8 sp_player_ship_speed;
+
+u8 sp_vshot_x;
+u8 sp_vshot_y;
+u8 sp_vshot_y_speed;
+
+u8 sp_enemy_saucer_x;
+u8 sp_enemy_saucer_y;
+u8 sp_enemy_saucer_speed;
+
+
+void drawSprite(u8 *sprite,int x,int y,int sprite_width,int sprite_height)
 {
    u8 *pvmem;
-   pvmem = cpct_getScreenPtr(CPCT_VMEM_START,sprite_horizontal_pos,sprite_vertical_pos);
+   pvmem = cpct_getScreenPtr(CPCT_VMEM_START,x,y);
    cpct_drawSprite(sprite,pvmem,sprite_width,sprite_height);
+
+}
+
+void draw_sp_player(u8 x,u8 y)
+{
+   drawSprite (sp_player_ship,x,y,SP_PLAYER_SHIP_W,SP_PLAYER_SHIP_H);
+}
+
+void draw_sp_enemy_saucer(u8 x,u8 y)
+{
+   drawSprite (sp_enemy_saucer,x,y,SP_ENEMY_SAUCER_W,SP_ENEMY_SAUCER_H);
+}
+void draw_sp_vshot(u8 x,u8 y)
+{
+   drawSprite (sp_vshot,x,y,SP_VSHOT_W,SP_VSHOT_H);
+}
+
+void initSprites()
+{
+   sp_player_ship_x = (SCREEN_RIGHT/2) - (SP_PLAYER_SHIP_W);
+   sp_player_ship_y = SCREEN_BOTTOM-SP_PLAYER_SHIP_H;
+   draw_sp_player(sp_player_ship_x,sp_player_ship_y);
+
+   sp_vshot_x = (SCREEN_RIGHT/2) - (SP_PLAYER_SHIP_W/2);
+   sp_vshot_y = SCREEN_BOTTOM - SP_PLAYER_SHIP_H - SP_VSHOT_H;
+   draw_sp_vshot(sp_vshot_x,sp_vshot_y);
+ 
+   sp_enemy_saucer_x = SCREEN_RIGHT - SP_ENEMY_SAUCER_W;
+   sp_enemy_saucer_y = SCREEN_TOP + SCREEN_FRAME;
+   sp_enemy_saucer_speed = 1;
+   draw_sp_enemy_saucer(sp_enemy_saucer_x,sp_enemy_saucer_y);
 
 }
 
@@ -52,39 +100,36 @@ void main(void)
    cpct_setVideoMode(0);
    cpct_setPalette(g_palette, 16);
    cpct_setBorder(HW_BLACK);
-
-   drawSprite(sp_player_ship, 
-      SCREEN_BOTTOM-SP_PLAYER_SHIP_H,
-      (SCREEN_RIGHT/2) - (SP_PLAYER_SHIP_W),
-      SP_PLAYER_SHIP_W,
-      SP_PLAYER_SHIP_H);
-
-   drawSprite(sp_vshot,
-      SCREEN_BOTTOM - SP_PLAYER_SHIP_H - SP_VSHOT_H,
-      (SCREEN_RIGHT/2) - (SP_PLAYER_SHIP_W/2),
-      SP_VSHOT_W,
-      SP_VSHOT_H);
-
-  
-   drawSprite(sp_enemy_saucer,
-      SCREEN_TOP + SCREEN_FRAME,
-      SCREEN_RIGHT - SP_ENEMY_SAUCER_W,
-      SP_ENEMY_SAUCER_W,
-      SP_ENEMY_SAUCER_H);
+   
+   initSprites();
    
 
-   /*
-   pvmem = cpct_getScreenPtr(CPCT_VMEM_START, 40, 200-SP_PLAYER_SHIP_H);
-   cpct_drawSprite(sp_player_ship,pvmem,SP_PLAYER_SHIP_W,SP_PLAYER_SHIP_H);
-
-   pvmem = cpct_getScreenPtr(CPCT_VMEM_START, 40, 200 - SP_PLAYER_SHIP_H - SP_VSHOT_H);
-   cpct_drawSprite(sp_vshot,pvmem,SP_VSHOT_W,SP_VSHOT_H);
-
-   pvmem = cpct_getScreenPtr(CPCT_VMEM_START, 40, 0+SP_ENEMY_SAUCER_H);
-   cpct_drawSprite(sp_enemy_saucer,pvmem,SP_ENEMY_SAUCER_W,SP_ENEMY_SAUCER_H);
-   */
-   cpct_waitVSYNC();
 
    // Loop forever
-   while (1);
+   while (TRUE)
+   {
+      cpct_scanKeyboard();
+
+      if (cpct_isKeyPressed (Key_P))
+      {
+         if (sp_player_ship_x + SP_PLAYER_SHIP_W < SCREEN_RIGHT)
+         {
+            ++sp_player_ship_x;
+            draw_sp_player(sp_player_ship_x,sp_player_ship_y);
+         }
+         
+      }
+
+      if (cpct_isKeyPressed (Key_O))
+      {
+         if (sp_player_ship_x > SCREEN_LEFT)
+         {
+            --sp_player_ship_x;
+            draw_sp_player(sp_player_ship_x,sp_player_ship_y);
+         }
+         
+      }
+      cpct_waitVSYNC();
+
+   }
 }
