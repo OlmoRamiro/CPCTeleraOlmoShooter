@@ -26,13 +26,14 @@ enum {
    SCREEN_TOP = 0,
    SCREEN_BOTTOM = 200,
    SCREEN_RIGHT = 80,
-   SCREEN_LEFT = 0
+   SCREEN_LEFT = 0,
+   SCREEN_FRAME = 1
 };
 
 void drawSprite(u8 *sprite,int sprite_vertical_pos,int sprite_horizontal_pos,int sprite_width,int sprite_height)
 {
    u8 *pvmem;
-   pvmem = cpct_getScreenPtr(CPCT_VMEM_START,sprite_vertical_pos,sprite_horizontal_pos);
+   pvmem = cpct_getScreenPtr(CPCT_VMEM_START,sprite_horizontal_pos,sprite_vertical_pos);
    cpct_drawSprite(sprite,pvmem,sprite_width,sprite_height);
 
 }
@@ -53,20 +54,21 @@ void main(void)
    cpct_setBorder(HW_BLACK);
 
    drawSprite(sp_player_ship, 
-      (SCREEN_RIGHT/2) - (SP_PLAYER_SHIP_W/2),
       SCREEN_BOTTOM-SP_PLAYER_SHIP_H,
+      (SCREEN_RIGHT/2) - (SP_PLAYER_SHIP_W),
       SP_PLAYER_SHIP_W,
       SP_PLAYER_SHIP_H);
 
    drawSprite(sp_vshot,
-      (SCREEN_RIGHT/2) + SP_VSHOT_W,
-      SCREEN_BOTTOM-SP_PLAYER_SHIP_H - SP_VSHOT_H,
+      SCREEN_BOTTOM - SP_PLAYER_SHIP_H - SP_VSHOT_H,
+      (SCREEN_RIGHT/2) - (SP_PLAYER_SHIP_W/2),
       SP_VSHOT_W,
       SP_VSHOT_H);
 
+  
    drawSprite(sp_enemy_saucer,
-      SCREEN_RIGHT-SP_ENEMY_SAUCER_W, 
-      SCREEN_TOP,
+      SCREEN_TOP + SCREEN_FRAME,
+      SCREEN_RIGHT - SP_ENEMY_SAUCER_W,
       SP_ENEMY_SAUCER_W,
       SP_ENEMY_SAUCER_H);
    

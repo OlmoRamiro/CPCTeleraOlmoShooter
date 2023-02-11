@@ -67,21 +67,21 @@ obj/main.rel                              [ main ]
 
 Libraries Linked                          [ object file ]
 
-/home/cpc/cpctelera/cpctelera/cpctelera.lib
+/home/olmo/Coding/cpctelera-development/cpctelera/cpctelera.lib
                                           [ cpct_setPalette_cbindings.rel ]
-/home/cpc/cpctelera/cpctelera/cpctelera.lib
+/home/olmo/Coding/cpctelera-development/cpctelera/cpctelera.lib
                                           [ cpct_setPALColour_cbindings.rel ]
-/home/cpc/cpctelera/cpctelera/cpctelera.lib
+/home/olmo/Coding/cpctelera-development/cpctelera/cpctelera.lib
                                           [ cpct_drawSprite_cbindings.rel ]
-/home/cpc/cpctelera/cpctelera/cpctelera.lib
+/home/olmo/Coding/cpctelera-development/cpctelera/cpctelera.lib
                                           [ cpct_waitVSYNC.rel ]
-/home/cpc/cpctelera/cpctelera/cpctelera.lib
+/home/olmo/Coding/cpctelera-development/cpctelera/cpctelera.lib
                                           [ cpct_setVideoMode_cbindings.rel ]
-/home/cpc/cpctelera/cpctelera/cpctelera.lib
+/home/olmo/Coding/cpctelera-development/cpctelera/cpctelera.lib
                                           [ cpct_removeInterruptHandler.rel ]
-/home/cpc/cpctelera/cpctelera/cpctelera.lib
+/home/olmo/Coding/cpctelera-development/cpctelera/cpctelera.lib
                                           [ cpc_mode_rom_status.rel ]
-/home/cpc/cpctelera/cpctelera/cpctelera.lib
+/home/olmo/Coding/cpctelera-development/cpctelera/cpctelera.lib
                                           [ cpct_getScreenPtr_cbindings.rel ]
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 4.
