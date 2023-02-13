@@ -9,6 +9,8 @@
 ; Public variables in this module
 ;--------------------------------------------------------
 	.globl _main
+	.globl _moveSaucer
+	.globl _enemySaucerHitsBorder
 	.globl _initSprites
 	.globl _draw_sp_vshot
 	.globl _draw_sp_enemy_saucer
@@ -128,7 +130,7 @@ _draw_sp_player::
 	ld	b, #0x00
 	ld	hl, #0x000e
 	push	hl
-	ld	l, #0x06
+	ld	l, #0x08
 	push	hl
 	push	de
 	push	bc
@@ -155,7 +157,7 @@ _draw_sp_enemy_saucer::
 	ld	b, #0x00
 	ld	hl, #0x0010
 	push	hl
-	ld	l, #0x0c
+	ld	l, #0x0e
 	push	hl
 	push	de
 	push	bc
@@ -201,78 +203,154 @@ _draw_sp_vshot::
 _initSprites::
 ;src/main.c:74: sp_player_ship_x = (SCREEN_RIGHT/2) - (SP_PLAYER_SHIP_W);
 	ld	hl,#_sp_player_ship_x + 0
-	ld	(hl), #0x22
+	ld	(hl), #0x20
 ;src/main.c:75: sp_player_ship_y = SCREEN_BOTTOM-SP_PLAYER_SHIP_H;
 	ld	hl,#_sp_player_ship_y + 0
 	ld	(hl), #0xba
 ;src/main.c:76: draw_sp_player(sp_player_ship_x,sp_player_ship_y);
-	ld	hl, #0xba22
+	ld	hl, #0xba20
 	push	hl
 	call	_draw_sp_player
 	pop	af
-;src/main.c:78: sp_vshot_x = (SCREEN_RIGHT/2) - (SP_PLAYER_SHIP_W/2);
+;src/main.c:78: sp_vshot_x = (SCREEN_RIGHT/2) - (SP_PLAYER_SHIP_W/2) - SP_VSHOT_W;
 	ld	hl,#_sp_vshot_x + 0
-	ld	(hl), #0x25
+	ld	(hl), #0x23
 ;src/main.c:79: sp_vshot_y = SCREEN_BOTTOM - SP_PLAYER_SHIP_H - SP_VSHOT_H;
 	ld	hl,#_sp_vshot_y + 0
 	ld	(hl), #0xb4
 ;src/main.c:80: draw_sp_vshot(sp_vshot_x,sp_vshot_y);
-	ld	hl, #0xb425
+	ld	hl, #0xb423
 	push	hl
 	call	_draw_sp_vshot
 	pop	af
 ;src/main.c:82: sp_enemy_saucer_x = SCREEN_RIGHT - SP_ENEMY_SAUCER_W;
 	ld	hl,#_sp_enemy_saucer_x + 0
-	ld	(hl), #0x44
+	ld	(hl), #0x42
 ;src/main.c:83: sp_enemy_saucer_y = SCREEN_TOP + SCREEN_FRAME;
 	ld	hl,#_sp_enemy_saucer_y + 0
 	ld	(hl), #0x01
-;src/main.c:84: sp_enemy_saucer_speed = 1;
+;src/main.c:84: sp_enemy_saucer_speed = -2;
 	ld	hl,#_sp_enemy_saucer_speed + 0
-	ld	(hl), #0x01
+	ld	(hl), #0xfe
 ;src/main.c:85: draw_sp_enemy_saucer(sp_enemy_saucer_x,sp_enemy_saucer_y);
-	ld	hl, #0x0144
+	ld	hl, #0x0142
 	push	hl
 	call	_draw_sp_enemy_saucer
 	pop	af
 	ret
-;src/main.c:89: void main(void) 
+;src/main.c:88: u8 enemySaucerHitsBorder()
+;	---------------------------------
+; Function enemySaucerHitsBorder
+; ---------------------------------
+_enemySaucerHitsBorder::
+;src/main.c:90: u8 hitLeftBorder = (sp_enemy_saucer_x <= SCREEN_LEFT);
+	ld	iy, #_sp_enemy_saucer_x
+	ld	a, 0 (iy)
+	sub	a,#0x01
+	ld	a, #0x00
+	rla
+	ld	c, a
+;src/main.c:91: u8 hitRightBorder = ((sp_enemy_saucer_x + SP_ENEMY_SAUCER_W) >= SCREEN_RIGHT );
+	ld	e, 0 (iy)
+	ld	d, #0x00
+	ld	hl, #0x000e
+	add	hl, de
+	ld	de, #0x8050
+	add	hl, hl
+	ccf
+	rr	h
+	rr	l
+	sbc	hl, de
+	ld	a, #0x00
+	rla
+	xor	a, #0x01
+	ld	b, a
+;src/main.c:92: return ( hitLeftBorder || hitRightBorder );
+	ld	a, c
+	or	a,a
+	jr	NZ,00104$
+	or	a,b
+	jr	NZ,00104$
+	ld	l,a
+	ret
+00104$:
+	ld	l, #0x01
+	ret
+;src/main.c:95: void moveSaucer()
+;	---------------------------------
+; Function moveSaucer
+; ---------------------------------
+_moveSaucer::
+;src/main.c:97: if (enemySaucerHitsBorder())
+	call	_enemySaucerHitsBorder
+	ld	a, l
+	or	a, a
+	jr	Z,00102$
+;src/main.c:98: sp_enemy_saucer_speed = -sp_enemy_saucer_speed;
+	xor	a, a
+	ld	iy, #_sp_enemy_saucer_speed
+	sub	a, 0 (iy)
+	ld	0 (iy), a
+00102$:
+;src/main.c:100: sp_enemy_saucer_x += sp_enemy_saucer_speed;
+	ld	hl, #_sp_enemy_saucer_speed
+	push	de
+	ld	iy, #_sp_enemy_saucer_x
+	push	iy
+	pop	de
+	ld	a, (de)
+	add	a, (hl)
+	ld	(de), a
+	pop	de
+;src/main.c:101: draw_sp_enemy_saucer(sp_enemy_saucer_x,sp_enemy_saucer_y);
+	ld	a, (_sp_enemy_saucer_y)
+	push	af
+	inc	sp
+	ld	a, (_sp_enemy_saucer_x)
+	push	af
+	inc	sp
+	call	_draw_sp_enemy_saucer
+	pop	af
+	ret
+;src/main.c:105: void main(void) 
 ;	---------------------------------
 ; Function main
 ; ---------------------------------
 _main::
-;src/main.c:98: cpct_disableFirmware();
+;src/main.c:114: cpct_disableFirmware();
 	call	_cpct_disableFirmware
-;src/main.c:100: cpct_setVideoMode(0);
+;src/main.c:116: cpct_setVideoMode(0);
 	ld	l, #0x00
 	call	_cpct_setVideoMode
-;src/main.c:101: cpct_setPalette(g_palette, 16);
+;src/main.c:117: cpct_setPalette(g_palette, 16);
 	ld	hl, #0x0010
 	push	hl
 	ld	hl, #_g_palette
 	push	hl
 	call	_cpct_setPalette
-;src/main.c:102: cpct_setBorder(HW_BLACK);
+;src/main.c:118: cpct_setBorder(HW_BLACK);
 	ld	hl, #0x1410
 	push	hl
 	call	_cpct_setPALColour
-;src/main.c:104: initSprites();
+;src/main.c:120: initSprites();
 	call	_initSprites
-;src/main.c:109: while (TRUE)
+;src/main.c:125: while (TRUE)
 00110$:
-;src/main.c:111: cpct_scanKeyboard();
+;src/main.c:127: moveSaucer();
+	call	_moveSaucer
+;src/main.c:128: cpct_scanKeyboard();
 	call	_cpct_scanKeyboard
-;src/main.c:113: if (cpct_isKeyPressed (Key_P))
+;src/main.c:130: if (cpct_isKeyPressed (Key_P))
 	ld	hl, #0x0803
 	call	_cpct_isKeyPressed
 	ld	a, l
 	or	a, a
 	jr	Z,00104$
-;src/main.c:115: if (sp_player_ship_x + SP_PLAYER_SHIP_W < SCREEN_RIGHT)
+;src/main.c:132: if (sp_player_ship_x + SP_PLAYER_SHIP_W < SCREEN_RIGHT)
 	ld	iy, #_sp_player_ship_x
 	ld	c, 0 (iy)
 	ld	b, #0x00
-	ld	hl, #0x0006
+	ld	hl, #0x0008
 	add	hl, bc
 	ld	de, #0x8050
 	add	hl, hl
@@ -281,9 +359,9 @@ _main::
 	rr	l
 	sbc	hl, de
 	jr	NC,00104$
-;src/main.c:117: ++sp_player_ship_x;
+;src/main.c:134: ++sp_player_ship_x;
 	inc	0 (iy)
-;src/main.c:118: draw_sp_player(sp_player_ship_x,sp_player_ship_y);
+;src/main.c:135: draw_sp_player(sp_player_ship_x,sp_player_ship_y);
 	ld	a, (_sp_player_ship_y)
 	push	af
 	inc	sp
@@ -293,20 +371,20 @@ _main::
 	call	_draw_sp_player
 	pop	af
 00104$:
-;src/main.c:123: if (cpct_isKeyPressed (Key_O))
+;src/main.c:140: if (cpct_isKeyPressed (Key_O))
 	ld	hl, #0x0404
 	call	_cpct_isKeyPressed
 	ld	a, l
 	or	a, a
 	jr	Z,00108$
-;src/main.c:125: if (sp_player_ship_x > SCREEN_LEFT)
+;src/main.c:142: if (sp_player_ship_x > SCREEN_LEFT)
 	ld	iy, #_sp_player_ship_x
 	ld	a, 0 (iy)
 	or	a, a
 	jr	Z,00108$
-;src/main.c:127: --sp_player_ship_x;
+;src/main.c:144: --sp_player_ship_x;
 	dec	0 (iy)
-;src/main.c:128: draw_sp_player(sp_player_ship_x,sp_player_ship_y);
+;src/main.c:145: draw_sp_player(sp_player_ship_x,sp_player_ship_y);
 	ld	a, (_sp_player_ship_y)
 	push	af
 	inc	sp
@@ -316,7 +394,7 @@ _main::
 	call	_draw_sp_player
 	pop	af
 00108$:
-;src/main.c:132: cpct_waitVSYNC();
+;src/main.c:149: cpct_waitVSYNC();
 	call	_cpct_waitVSYNC
 	jr	00110$
 	.area _CODE

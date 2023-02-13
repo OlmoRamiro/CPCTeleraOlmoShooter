@@ -3,8 +3,8 @@
 #define _IMG_PLAYER_SHIP_H_
 
 #include <types.h>
-#define SP_PLAYER_SHIP_W 6
+#define SP_PLAYER_SHIP_W 8
 #define SP_PLAYER_SHIP_H 14
-extern const u8 sp_player_ship[6 * 14];
+extern const u8 sp_player_ship[8 * 14];
 
 #endif

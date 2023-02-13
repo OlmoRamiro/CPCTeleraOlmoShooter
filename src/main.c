@@ -75,16 +75,32 @@ void initSprites()
    sp_player_ship_y = SCREEN_BOTTOM-SP_PLAYER_SHIP_H;
    draw_sp_player(sp_player_ship_x,sp_player_ship_y);
 
-   sp_vshot_x = (SCREEN_RIGHT/2) - (SP_PLAYER_SHIP_W/2);
+   sp_vshot_x = (SCREEN_RIGHT/2) - (SP_PLAYER_SHIP_W/2) - SP_VSHOT_W;
    sp_vshot_y = SCREEN_BOTTOM - SP_PLAYER_SHIP_H - SP_VSHOT_H;
    draw_sp_vshot(sp_vshot_x,sp_vshot_y);
  
    sp_enemy_saucer_x = SCREEN_RIGHT - SP_ENEMY_SAUCER_W;
    sp_enemy_saucer_y = SCREEN_TOP + SCREEN_FRAME;
-   sp_enemy_saucer_speed = 1;
+   sp_enemy_saucer_speed = -2;
    draw_sp_enemy_saucer(sp_enemy_saucer_x,sp_enemy_saucer_y);
-
 }
+
+u8 enemySaucerHitsBorder()
+{
+   u8 hitLeftBorder = (sp_enemy_saucer_x <= SCREEN_LEFT);
+   u8 hitRightBorder = ((sp_enemy_saucer_x + SP_ENEMY_SAUCER_W) >= SCREEN_RIGHT );
+   return ( hitLeftBorder || hitRightBorder );
+}
+
+void moveSaucer()
+{
+   if (enemySaucerHitsBorder())
+      sp_enemy_saucer_speed = -sp_enemy_saucer_speed;
+   
+   sp_enemy_saucer_x += sp_enemy_saucer_speed;
+   draw_sp_enemy_saucer(sp_enemy_saucer_x,sp_enemy_saucer_y);
+}
+
 
 void main(void) 
 {
@@ -108,6 +124,7 @@ void main(void)
    // Loop forever
    while (TRUE)
    {
+      moveSaucer();
       cpct_scanKeyboard();
 
       if (cpct_isKeyPressed (Key_P))

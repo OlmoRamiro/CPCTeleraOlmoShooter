@@ -46,10 +46,13 @@ _sp_enemy_saucer:
 	.db #0x00	; 0
 	.db #0x00	; 0
 	.db #0x00	; 0
+	.db #0x00	; 0
 	.db #0xc0	; 192
 	.db #0xc0	; 192
 	.db #0xc0	; 192
 	.db #0xc0	; 192
+	.db #0x00	; 0
+	.db #0x00	; 0
 	.db #0x00	; 0
 	.db #0x00	; 0
 	.db #0x00	; 0
@@ -67,6 +70,8 @@ _sp_enemy_saucer:
 	.db #0x00	; 0
 	.db #0x00	; 0
 	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
 	.db #0x40	; 64
 	.db #0xd0	; 208
 	.db #0xf8	; 248
@@ -79,6 +84,8 @@ _sp_enemy_saucer:
 	.db #0x80	; 128
 	.db #0x00	; 0
 	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
 	.db #0xd0	; 208
 	.db #0xfc	; 252
 	.db #0xf8	; 248
@@ -89,6 +96,8 @@ _sp_enemy_saucer:
 	.db #0xf4	; 244
 	.db #0xfc	; 252
 	.db #0xe0	; 224
+	.db #0x00	; 0
+	.db #0x00	; 0
 	.db #0x00	; 0
 	.db #0x40	; 64
 	.db #0xf4	; 244
@@ -102,6 +111,8 @@ _sp_enemy_saucer:
 	.db #0xf8	; 248
 	.db #0xf8	; 248
 	.db #0x80	; 128
+	.db #0x00	; 0
+	.db #0x00	; 0
 	.db #0xd0	; 208
 	.db #0xfc	; 252
 	.db #0xf4	; 244
@@ -114,6 +125,8 @@ _sp_enemy_saucer:
 	.db #0xf8	; 248
 	.db #0xfc	; 252
 	.db #0xe0	; 224
+	.db #0x00	; 0
+	.db #0x00	; 0
 	.db #0xd4	; 212
 	.db #0xf8	; 248
 	.db #0xf0	; 240
@@ -126,6 +139,8 @@ _sp_enemy_saucer:
 	.db #0xf0	; 240
 	.db #0xf4	; 244
 	.db #0xe8	; 232
+	.db #0x00	; 0
+	.db #0x00	; 0
 	.db #0xc0	; 192
 	.db #0xf4	; 244
 	.db #0xf4	; 244
@@ -138,6 +153,8 @@ _sp_enemy_saucer:
 	.db #0xf8	; 248
 	.db #0xf8	; 248
 	.db #0xc0	; 192
+	.db #0x00	; 0
+	.db #0x00	; 0
 	.db #0xd0	; 208
 	.db #0xd0	; 208
 	.db #0xfc	; 252
@@ -150,6 +167,8 @@ _sp_enemy_saucer:
 	.db #0xfc	; 252
 	.db #0xe0	; 224
 	.db #0xe0	; 224
+	.db #0x00	; 0
+	.db #0x00	; 0
 	.db #0xd4	; 212
 	.db #0xe0	; 224
 	.db #0xd0	; 208
@@ -162,6 +181,8 @@ _sp_enemy_saucer:
 	.db #0xe0	; 224
 	.db #0xd0	; 208
 	.db #0xe8	; 232
+	.db #0x00	; 0
+	.db #0x00	; 0
 	.db #0xd0	; 208
 	.db #0xf8	; 248
 	.db #0xe0	; 224
@@ -174,6 +195,8 @@ _sp_enemy_saucer:
 	.db #0xd0	; 208
 	.db #0xf4	; 244
 	.db #0xe0	; 224
+	.db #0x00	; 0
+	.db #0x00	; 0
 	.db #0x40	; 64
 	.db #0xf4	; 244
 	.db #0xf8	; 248
@@ -187,6 +210,8 @@ _sp_enemy_saucer:
 	.db #0xf8	; 248
 	.db #0x80	; 128
 	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
 	.db #0xd0	; 208
 	.db #0xf4	; 244
 	.db #0xfc	; 252
@@ -199,6 +224,8 @@ _sp_enemy_saucer:
 	.db #0xe0	; 224
 	.db #0x00	; 0
 	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
 	.db #0x40	; 64
 	.db #0xd0	; 208
 	.db #0xf0	; 240
@@ -212,6 +239,8 @@ _sp_enemy_saucer:
 	.db #0x00	; 0
 	.db #0x00	; 0
 	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
 	.db #0x40	; 64
 	.db #0xc0	; 192
 	.db #0xf0	; 240
@@ -226,10 +255,13 @@ _sp_enemy_saucer:
 	.db #0x00	; 0
 	.db #0x00	; 0
 	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
 	.db #0xc0	; 192
 	.db #0xc0	; 192
 	.db #0xc0	; 192
 	.db #0xc0	; 192
+	.db #0x00	; 0
 	.db #0x00	; 0
 	.db #0x00	; 0
 	.db #0x00	; 0

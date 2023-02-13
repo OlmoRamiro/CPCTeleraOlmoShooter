@@ -20,9 +20,11 @@ Symbol Table
   0 _draw_sp_enemy_saucer                                          005B GR
   0 _draw_sp_player                                                0031 GR
   0 _draw_sp_vshot                                                 0085 GR
+  0 _enemySaucerHitsBorder                                         00EB GR
     _g_palette                                                     **** GX
   0 _initSprites                                                   00AF GR
-  0 _main                                                          00EB GR
+  0 _main                                                          014E GR
+  0 _moveSaucer                                                    011E GR
     _sp_enemy_saucer                                               **** GX
   1 _sp_enemy_saucer_speed                                         0008 GR
   1 _sp_enemy_saucer_x                                             0006 GR
@@ -42,7 +44,7 @@ Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE                                      size  16A   flags    0
+   0 _CODE                                      size  1D0   flags    0
    1 _DATA                                      size    9   flags    0
    2 _INITIALIZED                               size    0   flags    0
    3 _DABS                                      size    0   flags    8

@@ -18,69 +18,72 @@ Area                                    Addr        Size        Decimal Bytes (A
      00000000  s__CABS                         
      00000000  s__DABS                         
      00000009  l__DATA                         
-     000003E0  l__CODE                         
+     00000482  l__CODE                         
      00004000  s__CODE                         
-     000043E0  s__DATA                         
-     000043E9  s__GSFINAL                      
-     000043E9  s__GSINIT                       
-     000043E9  s__HOME                         
-     000043E9  s__INITIALIZED                  
-     000043E9  s__INITIALIZER                  
+     00004482  s__DATA                         
+     0000448B  s__GSFINAL                      
+     0000448B  s__GSINIT                       
+     0000448B  s__HOME                         
+     0000448B  s__INITIALIZED                  
+     0000448B  s__INITIALIZER                  
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 2.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00004000    000003E0 =         992. bytes (REL,CON)
+_CODE                               00004000    00000482 =        1154. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
      00004000  _sp_vshot                          vshot
      00004006  _sp_enemy_saucer                   enemy_saurcer
-     000040C6  _sp_player_ship                    player_ship
-     0000411A  _g_palette                         g_palette
-     0000412A  _drawSprite                        main
-     0000415B  _draw_sp_player                    main
-     00004185  _draw_sp_enemy_saucer              main
-     000041AF  _draw_sp_vshot                     main
-     000041D9  _initSprites                       main
-     00004215  _main                              main
-     00004294  _cpct_setPalette                   cpct_video
-     000042AB  _cpct_isKeyPressed                 cpct_keyboard
-     000042AB  cpct_isKeyPressed_asm              cpct_keyboard
-     000042B7  _cpct_setPALColour                 cpct_video
-     000042C3  _cpct_drawSprite                   cpct_sprites
-     00004368  _cpct_keyboardStatusBuffer         cpct_keyboard
-     00004372  _cpct_waitVSYNC                    cpct_video
-     00004372  cpct_waitVSYNC_asm                 cpct_video
-     0000437A  _cpct_setVideoMode                 cpct_video
-     00004388  _cpct_disableFirmware              cpct_firmware
-     00004388  _cpct_removeInterruptHandler       cpct_firmware
-     00004388  cpct_disableFirmware_asm           cpct_firmware
-     00004388  cpct_removeInterruptHandler_asm    cpct_firmware
-     00004398  _cpct_mode_rom_status              cpct_firmware
-     00004399  _cpct_getScreenPtr                 cpct_video
-     000043AF  _cpct_scanKeyboard                 cpct_keyboard
-     000043AF  cpct_scanKeyboard_asm              cpct_keyboard
+     000040E6  _sp_player_ship                    player_ship
+     00004156  _g_palette                         g_palette
+     00004166  _drawSprite                        main
+     00004197  _draw_sp_player                    main
+     000041C1  _draw_sp_enemy_saucer              main
+     000041EB  _draw_sp_vshot                     main
+     00004215  _initSprites                       main
+     00004251  _enemySaucerHitsBorder             main
+     00004284  _moveSaucer                        main
+     000042B4  _main                              main
+     00004336  _cpct_setPalette                   cpct_video
+     0000434D  _cpct_isKeyPressed                 cpct_keyboard
+     0000434D  cpct_isKeyPressed_asm              cpct_keyboard
+     00004359  _cpct_setPALColour                 cpct_video
+     00004365  _cpct_drawSprite                   cpct_sprites
+     0000440A  _cpct_keyboardStatusBuffer         cpct_keyboard
+     00004414  _cpct_waitVSYNC                    cpct_video
+     00004414  cpct_waitVSYNC_asm                 cpct_video
+     0000441C  _cpct_setVideoMode                 cpct_video
+     0000442A  _cpct_disableFirmware              cpct_firmware
+     0000442A  _cpct_removeInterruptHandler       cpct_firmware
+     0000442A  cpct_disableFirmware_asm           cpct_firmware
+     0000442A  cpct_removeInterruptHandler_asm    cpct_firmware
+     0000443A  _cpct_mode_rom_status              cpct_firmware
+     0000443B  _cpct_getScreenPtr                 cpct_video
+     00004451  _cpct_scanKeyboard                 cpct_keyboard
+     00004451  cpct_scanKeyboard_asm              cpct_keyboard
+
 ASxxxx Linker V03.00 + NoICE + sdld,  page 3.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_DATA                               000043E0    00000009 =           9. bytes (REL,CON)
+_DATA                               00004482    00000009 =           9. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     000043E0  _sp_player_ship_x                  main
-     000043E1  _sp_player_ship_y                  main
-     000043E2  _sp_player_ship_speed              main
-     000043E3  _sp_vshot_x                        main
-     000043E4  _sp_vshot_y                        main
-     000043E5  _sp_vshot_y_speed                  main
-     000043E6  _sp_enemy_saucer_x                 main
-     000043E7  _sp_enemy_saucer_y                 main
-     000043E8  _sp_enemy_saucer_speed             main
+     00004482  _sp_player_ship_x                  main
+     00004483  _sp_player_ship_y                  main
+     00004484  _sp_player_ship_speed              main
+     00004485  _sp_vshot_x                        main
+     00004486  _sp_vshot_y                        main
+     00004487  _sp_vshot_y_speed                  main
+     00004488  _sp_enemy_saucer_x                 main
+     00004489  _sp_enemy_saucer_y                 main
+     0000448A  _sp_enemy_saucer_speed             main
 ASxxxx Linker V03.00 + NoICE + sdld,  page 4.
 
 Files Linked                              [ module(s) ]
